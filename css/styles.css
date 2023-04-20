@@ -8,6 +8,7 @@
   --accent-color: #e7e9fc;
   --icon-color: #8e8f99;
   --success-color: #31d0aa;
+  --modal-background: #fcfcfc;
 }
 
 body {
@@ -16,6 +17,7 @@ body {
   line-height: 1.5;
   color: var(--text-color);
   background-color: var(--primary-white-color);
+  letter-spacing: 0.02em;
 }
 
 h1,
@@ -64,7 +66,6 @@ ol {
 .section-title {
   font-size: 36px;
   line-height: 1.1;
-  letter-spacing: 0.02em;
   text-align: center;
   text-transform: capitalize;
   margin: 0 auto 72px;
@@ -75,13 +76,8 @@ ol {
   font-weight: 500;
   font-size: 20px;
   line-height: 1.2;
-  letter-spacing: 0.02em;
   margin-bottom: 8px;
   color: var(--headings-color);
-}
-
-.item-description {
-  letter-spacing: 0.02em;
 }
 
 .section {
@@ -146,12 +142,25 @@ ol {
   font-size: 16px;
   padding: 24px 0;
   color: var(--headings-color);
+  position: relative;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .menu-link:hover,
 .menu-link:focus,
 .menu-link:active {
   color: var(--pressed-state-color);
+}
+
+.current-page::after {
+  content: "";
+  position: absolute;
+  transform: translateY(20px);
+  display: block;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--pressed-state-color);
 }
 
 .contacts {
@@ -162,6 +171,7 @@ ol {
 .contacts-link {
   font-size: 16px;
   color: var(--text-color);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .contacts-link:hover,
@@ -193,7 +203,6 @@ ol {
   font-size: 56px;
   line-height: 1.07;
   text-align: center;
-  letter-spacing: 0.02em;
   margin: 0 auto 48px;
   max-width: 496px;
   color: var(--primary-white-color);
@@ -223,12 +232,13 @@ ol {
   color: var(--primary-white-color);
   background-color: var(--primary-brand-color);
   border-radius: 4px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .modal-button:hover,
 .modal-button:focus,
 .modal-button:active {
-  background: var(--pressed-state-color);
+  background-color: var(--pressed-state-color);
 }
 
 /**
@@ -326,6 +336,7 @@ ol {
 
 .team-social-link {
   background-color: var(--primary-brand-color);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .team-social-link:hover,
@@ -360,12 +371,14 @@ ol {
   border: 1px solid var(--icon-color);
   border-radius: 4px;
   color: var(--icon-color);
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .customers-link:hover,
 .customers-link:focus {
   color: var(--pressed-state-color);
-  border: 1px solid var(--pressed-state-color);
+  border-color: var(--pressed-state-color);
 }
 .customers-logo {
   fill: currentColor;
@@ -419,6 +432,7 @@ ol {
 
 .footer-social-link {
   background-color: var(--primary-brand-color);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .footer-social-link:hover,
@@ -448,14 +462,18 @@ ol {
   padding: 11px 23px;
   border: 1px solid var(--accent-color);
   border-radius: 4px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .filter-button:hover,
 .filter-button:focus,
 .filter-button:active {
   color: var(--primary-white-color);
-  background: var(--pressed-state-color);
-  border: 1px solid transparent;
+  background-color: var(--pressed-state-color);
+  border-color: transparent;
   box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 2px 1px rgba(0, 0, 0, 0.08),
     0px 2px 2px rgba(0, 0, 0, 0.12);
 }
@@ -479,11 +497,13 @@ ol {
 .portfolio-link {
   display: block;
   border: 1px solid var(--accent-color);
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .portfolio-link:hover,
 .portfolio-link:focus {
-  border: 1px solid var(--light-mode-color);
+  border-color: var(--light-mode-color);
   box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
     0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
 }
@@ -494,4 +514,101 @@ ol {
 
 .portfolio-subtitle {
   margin-bottom: 8px;
+}
+
+.portfolio-card-wrapper {
+  position: relative;
+  width: 360px;
+  overflow: hidden;
+}
+
+.portfolio-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 40px 32px;
+  color: var(--light-mode-color);
+  background-color: var(--primary-brand-color);
+  transform: translateY(100%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.portfolio-link:hover .portfolio-overlay,
+.portfolio-link:focus .portfolio-overlay {
+  transform: translateY(0);
+}
+
+/**
+  |============================
+  | MODAL
+  |============================
+**/
+.backdrop {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(46, 47, 66, 0.4);
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 576px;
+  width: 408px;
+  background-color: var(--modal-background);
+
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  opacity: 1;
+  display: inline-block;
+  margin: 0 0.5rem;
+  animation: zoomIn;
+  animation-duration: 0.5s;
+}
+
+.close-button {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  background-color: var(--accent-color);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.close-button:hover,
+.close-button:focus {
+  background-color: var(--pressed-state-color);
+  border-color: transparent;
+}
+
+.close-button-icon {
+  fill: var(--headings-color);
+}
+
+.close-button:hover .close-button-icon,
+.close-button:focus .close-button-icon {
+  fill: var(--primary-white-color);
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.backdrop.is-hidden .modal {
+  animation: zoomOut;
+  animation-duration: 0.5s;
 }
