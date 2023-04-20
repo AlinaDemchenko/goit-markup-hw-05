@@ -552,6 +552,7 @@ ol {
   bottom: 0;
   right: 0;
   background: rgba(46, 47, 66, 0.4);
+  transition: opacity 0.2s linear 0.3s;
 }
 
 .modal {
@@ -563,14 +564,14 @@ ol {
   background-color: var(--modal-background);
 
   transform: translate(-50%, -50%);
+  transform: skale (1);
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12),
     0px 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   opacity: 1;
   display: inline-block;
   margin: 0 0.5rem;
-  animation: zoomIn;
-  animation-duration: 0.5s;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .close-button {
@@ -585,6 +586,8 @@ ol {
   height: 24px;
   background-color: var(--accent-color);
   border: 1px solid rgba(0, 0, 0, 0.1);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .close-button:hover,
@@ -595,6 +598,7 @@ ol {
 
 .close-button-icon {
   fill: var(--headings-color);
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .close-button:hover .close-button-icon,
@@ -605,10 +609,9 @@ ol {
 .backdrop.is-hidden {
   opacity: 0;
   pointer-events: none;
-  visibility: hidden;
 }
 
 .backdrop.is-hidden .modal {
-  animation: zoomOut;
-  animation-duration: 0.5s;
+  opacity: 0;
+  transform: scale(0.2);
 }
